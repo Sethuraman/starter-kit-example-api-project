@@ -12,5 +12,5 @@ outputs:
   - name: output
 
 run:
-  path: api-project/save-git-hash-task.sh
+  path: api-project/concourse-scripts/save-git-hash-task.sh
 
