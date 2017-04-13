@@ -12,8 +12,5 @@ outputs:
   - name: output
 
 run:
-  path: /bin/bash
-  args:
-  - |
-    cd api-project
-    git rev-parse --short HEAD >> ../output/git-commit-sha.txt
+  path: api-project/save-git-hash-task.sh
+
