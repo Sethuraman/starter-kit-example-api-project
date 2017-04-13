@@ -12,6 +12,8 @@ outputs:
   - name: output
 
 run:
-  path: |
-     cd api-project && 
-     git rev-parse --short HEAD >> ../output/git-commit-sha.txt
+  path: /bin/bash
+  args:
+  - |
+    cd api-project
+    git rev-parse --short HEAD >> ../output/git-commit-sha.txt
