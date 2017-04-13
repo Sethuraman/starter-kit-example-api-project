@@ -1,0 +1,29 @@
+---
+resources:
+- name: api-project
+  type: git
+  source:
+    uri: git@github.com:Sethuraman/starter-kit-example-api-project.git
+    branch: master
+    private_key: {{git_private_key}}
+
+- name: ecr
+  type: docker-image
+  source:
+    repository: 779624523000.dkr.ecr.ap-southeast-2.amazonaws.com/starter-kit/api
+  aws_access_key_id: {{access_id}}
+  aws_secret_access_key: {{access_secret_key}}
+
+
+jobs:
+- name: build-api-project
+  plan:
+  - get: api-project
+
+  - task: save_git_hash
+    file: api-project/concourse-scripts/save-git-hash-task.yml
+
+  - put: ecr
+    params:
+      build: api-project
+      tag: output/git-commit-sha.txt
